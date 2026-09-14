@@ -1,5 +1,5 @@
 title: 奉昌炜 Bruce's Homepage
-page-top-title: 奉昌炜 Bruce
+page-top-title: 奉昌炜
 top-section-bg-text: Data Science / Web3
 backgrounds:
   - static/assets/background/background_0.jpeg
@@ -16,7 +16,7 @@ license-link:
 sections:
   - id: home
     nav: HOME
-    title: 奉昌炜 Bruce&ensp;|&ensp;Bruce Feng
+    title: 奉昌炜
     href: '#page-top'
   - id: projects
     nav: PROJECTS
