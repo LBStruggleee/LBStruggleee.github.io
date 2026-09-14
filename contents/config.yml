@@ -3,6 +3,7 @@ page-top-title: 奉昌炜 Bruce
 top-section-bg-text: Data Science / Web3
 backgrounds:
   - static/assets/background/background_0.jpeg
+  - static/assets/background/background_1.jpeg
 background-interval-ms: 7000
 background-overlay: 0.52
 copyright-text: '&copy; 奉昌炜 Bruce 2023-2027. All Rights Reserved.'
