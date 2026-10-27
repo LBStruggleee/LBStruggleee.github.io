@@ -17,8 +17,8 @@
 
 ## Projects
 
-- **KnowFlow 知汇** — 面向企业与个人的可追溯 RAG 知识库，采用 FTS5 + 向量 + RRF 三通道混合检索，回答带引用标记与检索 trace，支持本地降级与索引重建。技术栈为 Python 3.13 + FastAPI + Chroma + Qwen + Vue 3。
-- **DataQuery Copilot** — 基于 LLM 的自然语言数据查询工具，打通自然语言 → SQL → 安全校验 → 执行 → 清洗 → 可视化全链路。技术栈为 Python + FastAPI + DeepSeek API + React + TypeScript。
+- **KnowFlow 知汇**（2024.09–2026.02） — 面向企业与个人的可追溯 RAG 知识库，采用 FTS5 + 向量 + RRF 三通道混合检索，回答带引用标记与检索 trace，支持本地降级与索引重建。技术栈为 Python 3.13 + FastAPI + Chroma + Qwen + Vue 3。
+- **DataQuery Copilot**（2025.03–2025.06） — 基于 LLM 的自然语言数据查询工具，打通自然语言 → SQL → 安全校验 → 执行 → 清洗 → 可视化全链路。技术栈为 Python + FastAPI + DeepSeek API + React + TypeScript。
 
 ## Contact
 
