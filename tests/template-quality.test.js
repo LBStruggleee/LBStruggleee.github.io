@@ -38,8 +38,8 @@ configuredBackgrounds.forEach((background) => {
 });
 assert.match(scripts, /function\s+initBackgroundSlideshow/, 'background slideshow should be initialized from JS');
 assert.match(mainCss, /prefers-reduced-motion:\s*reduce/, 'slideshow should respect reduced motion preferences');
-assert.equal(/<img\b[^>]*\bsrc="static\/assets\/img\/photo\.png"[^>]*\bwidth=/.test(index), false, 'avatar image should not force a fixed width attribute');
-assert.equal(/<img\b[^>]*\bsrc="static\/assets\/img\/photo\.png"[^>]*\bheight=/.test(index), false, 'avatar image should not force a fixed height attribute');
+assert.equal(/<img\b[^>]*\bsrc="static\/assets\/img\/photo\.jpg"[^>]*\bwidth=/.test(index), false, 'avatar image should not force a fixed width attribute');
+assert.equal(/<img\b[^>]*\bsrc="static\/assets\/img\/photo\.jpg"[^>]*\bheight=/.test(index), false, 'avatar image should not force a fixed height attribute');
 assert.match(mainCss, /#avatar img[\s\S]*height:\s*auto/, 'avatar CSS should preserve the original image ratio');
 assert.match(mainCss, /#avatar img[\s\S]*width:\s*min\(180px,\s*max\(130px,\s*calc\(100vw \/ 6\)\)\)/, 'avatar should keep responsive sizing with a smaller desktop maximum');
 assert.match(mainCss, /\.top-section[\s\S]*height:\s*25rem/, 'hero should keep its full original height');
