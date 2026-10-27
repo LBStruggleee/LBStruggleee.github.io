@@ -1,6 +1,6 @@
 ### KnowFlow · Traceable RAG Knowledge Base
 
-<p class="project-meta"><strong>Solo developer (full-stack)</strong> · 2024.09 – 2026.02 · Python 3.13 · FastAPI · SQLAlchemy · SQLite (WAL + FTS5) · Chroma · DashScope (Qwen / text-embedding-v3) · Vue 3 + Vite + Element Plus · pytest / Vitest / GitHub Actions</p>
+<p class="project-meta"><strong>Solo developer (full-stack)</strong> · 2024.09.15 – 2026.02.20 · Python 3.13 · FastAPI · SQLAlchemy · SQLite (WAL + FTS5) · Chroma · DashScope (Qwen / text-embedding-v3) · Vue 3 + Vite + Element Plus · pytest / Vitest / GitHub Actions</p>
 
 A traceable RAG knowledge base for teams and individuals that keeps model answers grounded in the user's own documents instead of letting them improvise, and makes the whole retrieval process auditable. Users can create and organise multiple knowledge bases and upload txt, md, pdf, docx and pptx files; the system parses each document asynchronously, builds a Section tree from heading levels, splits text into paragraph-aware chunks, and writes them to both the fact database and the vector index.
 
@@ -21,7 +21,7 @@ Retrieval combines three channels — FTS5 lexical search, semantic vectors and 
 
 ### DataQuery Copilot · Natural-Language Data Querying
 
-<p class="project-meta"><strong>Solo developer (full-stack)</strong> · 2025.03 – 2025.06 · Python 3.10+ · FastAPI · SQLite (WAL) · DeepSeek API (OpenAI-compatible) · pandas · matplotlib · React + TypeScript + Vite · Playwright · Docker / Render</p>
+<p class="project-meta"><strong>Solo developer (full-stack)</strong> · 2025.03.12 – 2025.06.26 · Python 3.10+ · FastAPI · SQLite (WAL) · DeepSeek API (OpenAI-compatible) · pandas · matplotlib · React + TypeScript + Vite · Playwright · Docker / Render</p>
 
 A data-querying tool that connects the full pipeline — natural language → SQL generation → safety validation → execution → data cleaning → visual output. Users ask questions in natural language, DeepSeek generates SQLite statements from the schema, the query passes layered safety checks before execution, results are cleaned (missing-value filling, format normalisation) and visualised as bar, line, pie or scatter charts chosen from the shape of the data.
 
