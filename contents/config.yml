@@ -1,24 +1,24 @@
-title: "奉昌炜 Bruce's Homepage"
+title: "奉昌炜 Bruce 的个人主页"
 page-top-title: 奉昌炜 Bruce
-top-section-bg-text: Data Science / Web3
+top-section-bg-text: 数据科学 / 大模型应用
 backgrounds:
   - static/assets/background/background_0.jpeg
   - static/assets/background/background_1.jpeg
 background-interval-ms: 7000
 background-overlay: 0.52
-copyright-text: '&copy; 奉昌炜 Bruce 2023-2027. All Rights Reserved.'
+copyright-text: '&copy; 奉昌炜 Bruce 2023-2027. 保留所有权利。'
 github-link:
-  text: Github
+  text: GitHub
   href: https://github.com/LBStruggleee
 license-link:
-  text: License
+  text: 许可证
   href: https://github.com/LBStruggleee/LBStruggleee.github.io/blob/main/LICENSE
 sections:
   - id: home
-    nav: HOME
+    nav: 首页
     title: 奉昌炜 Bruce
     href: '#page-top'
   - id: projects
-    nav: PROJECTS
-    title: PROJECTS
+    nav: 项目
+    title: 项目
     icon: bi-code-slash

@@ -1,15 +1,15 @@
 [![LBStruggleee](https://img.shields.io/badge/LBStruggleee-github-blue?logo=github)](https://github.com/LBStruggleee)
 
-I am currently a senior student majoring in Data Science and Big Data Technology at Huizhou University. I build full-stack applications around large language models, with a focus on retrieval-augmented generation and natural-language data querying.
+惠州学院数据科学与大数据技术专业大四本科生，关注大模型应用、检索增强生成与自然语言数据查询，日常做全栈开发。
 
-#### Contact
+#### 联系方式
 
 Email: 718508219[at]qq.com
 
-#### Education
+#### 教育经历
 
-B.E., Data Science and Big Data Technology, Huizhou University, 2023—2027.
+惠州学院，数据科学与大数据技术，本科，2023—2027
 
-#### Research Interests
+#### 研究方向
 
-Data Science; Deep Learning; Large Language Models; Retrieval-Augmented Generation; Web Development; Blockchain
+数据科学；深度学习；大语言模型；检索增强生成；Web 开发

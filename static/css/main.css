@@ -17,6 +17,28 @@ body {
     z-index: 10000;
 }
 
+.lang-toggle {
+    align-self: center;
+    padding: 0.22rem 0.8rem;
+    border: 1px solid rgba(57, 72, 210, 0.4);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--h-title-color);
+    font-family: "Mulish", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+    background: var(--h-title-color);
+    color: #ffffff;
+    outline: none;
+}
+
 .page-skeleton {
     position: fixed;
     top: 25rem;

@@ -1,6 +1,9 @@
 
 const content_dir = 'contents/'
 const config_file = 'config.yml'
+const supportedLanguages = ['zh', 'en']
+const defaultLanguage = 'zh'
+const languageStorageKey = 'site-language'
 
 const allowedUrlProtocols = ['http:', 'https:', 'mailto:', 'tel:'];
 const configOnlyKeys = ['nav', 'sections', 'backgrounds', 'background-interval-ms', 'background-overlay'];
@@ -265,14 +268,86 @@ function typesetMath() {
     return MathJax.startup.promise.then(() => MathJax.typesetPromise());
 }
 
-function loadConfig() {
-    return fetch(content_dir + config_file)
-        .then(response => response.text())
-        .then(text => jsyaml.load(text) || {})
-        .catch(error => {
+function getLanguageSuffix(language) {
+    return language === 'en' ? '.en' : '';
+}
+
+function resolveLanguage() {
+    try {
+        const requested = new URLSearchParams(window.location.search).get('lang');
+        if (supportedLanguages.includes(requested)) {
+            return requested;
+        }
+
+        const stored = window.localStorage.getItem(languageStorageKey);
+        if (supportedLanguages.includes(stored)) {
+            return stored;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+
+    return defaultLanguage;
+}
+
+function initLanguageToggle(language) {
+    const toggle = document.getElementById('lang-toggle');
+    if (!toggle) {
+        return;
+    }
+
+    const nextLanguage = language === 'zh' ? 'en' : 'zh';
+    toggle.textContent = nextLanguage === 'en' ? 'EN' : '中文';
+    toggle.setAttribute('aria-label', nextLanguage === 'en' ? 'Switch to English' : '切换到中文');
+    toggle.setAttribute('title', nextLanguage === 'en' ? 'Switch to English' : '切换到中文');
+
+    toggle.addEventListener('click', () => {
+        try {
+            window.localStorage.setItem(languageStorageKey, nextLanguage);
+        } catch (error) {
+            console.log(error);
+        }
+
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', nextLanguage);
+        window.location.href = url.toString();
+    });
+}
+
+function loadYamlFile(path) {
+    return fetch(path)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load ' + path);
+            }
+
+            return response.text();
+        })
+        .then(text => jsyaml.load(text) || {});
+}
+
+function loadConfig(language) {
+    const baseConfig = loadYamlFile(content_dir + config_file);
+
+    if (language !== 'en') {
+        return baseConfig.catch(error => {
             console.log(error);
             return {};
         });
+    }
+
+    const localizedConfig = loadYamlFile(content_dir + 'config' + getLanguageSuffix(language) + '.yml');
+
+    return Promise.all([
+        baseConfig.catch(error => {
+            console.log(error);
+            return {};
+        }),
+        localizedConfig.catch(error => {
+            console.log(error);
+            return {};
+        }),
+    ]).then(([base, overlay]) => Object.assign({}, base, overlay));
 }
 
 function applyConfig(yml) {
@@ -308,18 +383,29 @@ function getConfiguredSections(yml) {
     });
 }
 
-function loadMarkdownSection(name) {
-    return fetch(content_dir + name + '.md')
-        .then(response => response.text())
-        .then(markdown => {
-            const target = document.getElementById(name + '-md');
-            if (!target) {
-                console.log("Unknown markdown section: " + name);
-                return;
+function loadMarkdownSection(name, language) {
+    const target = document.getElementById(name + '-md');
+    if (!target) {
+        console.log("Unknown markdown section: " + name);
+        return Promise.resolve();
+    }
+
+    const loadMarkdown = (path) => fetch(path)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load ' + path);
             }
 
-            const html = sanitizeMarkdownHtml(marked.parse(markdown));
-            target.innerHTML = html;
+            return response.text();
+        });
+
+    const localizedPath = content_dir + name + getLanguageSuffix(language) + '.md';
+    const fallbackPath = content_dir + name + '.md';
+
+    return loadMarkdown(localizedPath)
+        .catch(() => loadMarkdown(fallbackPath))
+        .then(markdown => {
+            target.innerHTML = sanitizeMarkdownHtml(marked.parse(markdown));
         })
         .catch(error => console.log(error));
 }
@@ -332,7 +418,11 @@ function markSiteReady() {
 window.addEventListener('DOMContentLoaded', event => {
     marked.use({ mangle: false, headerIds: false });
 
-    loadConfig()
+    const language = resolveLanguage();
+    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+    initLanguageToggle(language);
+
+    loadConfig(language)
         .then((yml) => {
             applyConfig(yml);
             const sections = normalizeSections(yml.sections);
@@ -343,7 +433,7 @@ window.addEventListener('DOMContentLoaded', event => {
             activateScrollSpy();
             bindResponsiveNavbar();
 
-            return Promise.all(getConfiguredSections(yml).map(loadMarkdownSection));
+            return Promise.all(getConfiguredSections(yml).map(name => loadMarkdownSection(name, language)));
         })
         .then(() => typesetMath())
         .catch(error => console.log(error))
